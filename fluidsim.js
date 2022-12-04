@@ -2224,13 +2224,7 @@ function render (target) {
         drawColor(target, normalizeColor(config.BACK_COLOR));
         if (target == null && config.TRANSPARENT)
         drawCheckerboard(target);
-        if(config.DISPLAY_FLUID){
-            drawDisplay(target);
-        }
-        else{
-            drawDisplay(noise);
-        }
-        // blit(picture);
+        drawDisplay(target);
     
     }
     
@@ -2259,6 +2253,9 @@ function render (target) {
         gl.uniform1i(displayMaterial.uniforms.uTexture, dye.read.attach(0));
     }
     else{
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, renderTarget.__webglTexture);
+        gl.uniform1i(splatVelProgram.uniforms.uDensityMap, renderTarget.__webglTexture); //density map
         gl.uniform1i(displayMaterial.uniforms.uTexture, noise.read.attach(0));
     }
     if (config.BLOOM) {
