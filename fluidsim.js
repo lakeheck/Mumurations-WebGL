@@ -391,20 +391,6 @@ const promoPopupClose = document.getElementsByClassName('promo-close')[0];
 // });
 
 
-//callback to listen for click on link 
-// const appleLink = document.getElementById('apple_link');
-// appleLink.addEventListener('click', e => {
-//     ga('send', 'event', 'link promo', 'app');
-//     //define what link to actually open when this element is clicked 
-//     window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
-// });
-
-//callback for link 
-// const googleLink = document.getElementById('google_link');
-// googleLink.addEventListener('click', e => {
-//     ga('send', 'event', 'link promo', 'app');
-//     window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
-// });
 
 // Simulation section
 
@@ -543,10 +529,6 @@ function getWebGLContext (canvas) {
         formatRG = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
         formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
     }
-
-    //ga() is for sending data to Google Analytics 
-    ga('send', 'event', isWebGL2 ? 'webgl2' : 'webgl', formatRGBA == null ? 'not supported' : 'supported');
-
     return {
         gl,
         ext: {
@@ -667,7 +649,6 @@ function startGUI () {
     //create a function to assign to a button, here linking my github
     let github = gui.add({ fun : () => {
         window.open('https://github.com/lakeheck/Fluid-Simulation-WebGL');
-        ga('send', 'event', 'link button', 'github');
     } }, 'fun').name('Github');
     github.__li.className = 'cr function bigFont';
     github.__li.style.borderLeft = '3px solid #8C8C8C';
